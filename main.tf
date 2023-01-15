@@ -127,12 +127,12 @@ resource "aws_dynamodb_table" "charging-session-dynamodb-table" {
   }
 
   global_secondary_index {
-    name               = "${var.app_prefix}_charging-session-customerId_index"
+    name               = "${var.app_prefix}_active-charging-sessions_index"
     hash_key           = "customerId"
     write_capacity     = 100
     read_capacity      = 100
     projection_type    = "INCLUDE"
-    non_key_attributes = ["outletId", "outletState"]
+    non_key_attributes = ["outletId", "outletState", "startTime", "sessionId"]
   }
 
   lifecycle {
